@@ -20,9 +20,9 @@ module SE
       attr_reader :quota, :quota_used
       attr_accessor :params
 
-      def initialize(key = "", log_api_raw: false, log_api_json: false, log_meta: true, **params)
+      def initialize(key = "", log_api_raw: false, filter: '!*1_).BnZb8pdvWlZpJYNyauMekouxK9-RzUNUrwiB', log_api_json: false, log_meta: true, **params)
         @key = key
-        @params = params.merge({filter: '!*1_).BnZb8pdvWlZpJYNyauMekouxK9-RzUNUrwiB'})
+        @params = filter.to_s.size > 0 ? params.merge({filter: filter}) : params
         @quota = nil
         @quota_used = 0
         @backoff = Time.now
