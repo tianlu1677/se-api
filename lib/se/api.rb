@@ -82,6 +82,10 @@ module SE
         tags(name, **params).first
       end
 
+      def search(**params)
+        json('search')
+      end
+
       private
 
       def objectify(type, ids = "", uri_prefix: nil, uri_suffix: nil, uri: nil, delimiter: ';', **params)
