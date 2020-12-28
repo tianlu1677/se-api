@@ -106,7 +106,7 @@ module SE
           sleep backoff_for+2
           @logger.warn "Finished backing off!"
         end
-        params = @params.merge(params).merge({key: @key}).map { |k,v| "#{k}=#{v}" }.join('&')
+        params = @params.merge(params).merge({key: @key}).reject{|k, v| v.nil?}.map { |k,v| "#{k}=#{v}" }.join('&')
         @logger.info "Posting to https://api.stackexchange.com/#{API_VERSION}/#{uri}?#{params}"
         begin
           resp_raw  = Net::HTTP.get_response(URI("https://api.stackexchange.com/#{API_VERSION}/#{uri}?#{params}")).body
