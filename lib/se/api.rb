@@ -83,7 +83,7 @@ module SE
       end
 
       def search(**params)
-        json('search')
+        json('search', **params)
       end
 
       private
